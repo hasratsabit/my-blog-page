@@ -10,12 +10,19 @@
     "type": "git",
     "url": "git+https://github.com/hasratsabit/my-blog-page.git"
   },
-  "keywords": [
-  ],
-  "author": "",
+  "keywords": [],
+  "author": "Hasrat Sabit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hasratsabit/my-blog-page/issues"
   },
-  "homepage": "https://github.com/hasratsabit/my-blog-page#readme"
+  "homepage": "https://github.com/hasratsabit/my-blog-page#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.2"
+  }
 }
