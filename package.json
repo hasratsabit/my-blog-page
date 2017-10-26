@@ -1,0 +1,21 @@
+{
+  "name": "my-blog-page",
+  "version": "1.0.0",
+  "description": "This is my personal blog page.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hasratsabit/my-blog-page.git"
+  },
+  "keywords": [
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hasratsabit/my-blog-page/issues"
+  },
+  "homepage": "https://github.com/hasratsabit/my-blog-page#readme"
+}
