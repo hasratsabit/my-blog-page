@@ -71,7 +71,7 @@ const Schema = mongoose.Schema;
 	}
 
 	// Checks valid username.
-	let validNameChecker = (username) => {
+	let validUsernameChecker = (username) => {
 		if(!username) {
 			return false;
 		}else {
@@ -88,7 +88,7 @@ const Schema = mongoose.Schema;
 			message: 'Your username must be at least 3 characters but no more than 15.'
 		},
 		{
-			validator: validNameChecker,
+			validator: validUsernameChecker,
 			message: 'Your username must not have special characters.'
 		}
 	]
@@ -100,7 +100,7 @@ const Schema = mongoose.Schema;
 // ==========================================================
 
 	// Checks the length of email.
-	let usernameLengthChecker = (email) => {
+	let emailLengthChecker = (email) => {
 		if(!email){
 			// If no email return error
 			return false;
@@ -116,14 +116,16 @@ const Schema = mongoose.Schema;
 	}
 
 	// Checks valid email.
-	let validNameChecker = (email) => {
-		if(!email) {
-			return false;
-		}else {
-			// Regular expression to test for a valid e-mail
-			const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-		}
-	}
+	let validEmailChecker = (email) => {
+	  // Check if e-mail exists
+	  if (!email) {
+	    return false; // Return error
+	  } else {
+	    // Regular expression to test for a valid e-mail
+	    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+	    return regExp.test(email); // Return regular expression test results (true or false)
+	  }
+	};
 
 
 	let emailValidators = [
@@ -132,7 +134,7 @@ const Schema = mongoose.Schema;
 			message: 'Your email must be at least 3 characters but no more than 30.'
 		},
 		{
-			validator: validNameChecker,
+			validator: validEmailChecker,
 			message: 'It is not a valid email. Please enter a valid email address.'
 		}
 	]
@@ -144,7 +146,7 @@ const Schema = mongoose.Schema;
 // ==========================================================
 
 	// Checks the length of password.
-	let usernameLengthChecker = (password) => {
+	let passwordLengthChecker = (password) => {
 		if(!password){
 			// If no password return error
 			return false;
@@ -160,7 +162,7 @@ const Schema = mongoose.Schema;
 	}
 
 	// Checks valid password.
-	let validNameChecker = (password) => {
+	let validPasswordChecker = (password) => {
 		if(!password) {
 			return false;
 		}else {
@@ -177,7 +179,7 @@ const Schema = mongoose.Schema;
 			message: 'Your password must be at least 8 characters but no more than 35.'
 		},
 		{
-			validator: validNameChecker,
+			validator: validPasswordChecker,
 			message: 'The password must contain one uppercase letter, uppercase letter, number, and special charactar.'
 		}
 	]
@@ -197,17 +199,23 @@ const Schema = mongoose.Schema;
 	});
 
 
+// ==========================================================
+// 		 									PASSWORD ENCRYPTION
+// ==========================================================
 
-
-
-
-
-
-
-
-
-
-
+	UserSchema.pre('save', function(next) {
+		// First check if the password is modified before applying any encryption.
+		if(!this.isModified('password'));
+		// If not modified, Exit the middleware.
+		return next();
+		// Encrypt the password.
+		bcrypt.hash(this.password, null, null, function(err, hash) {
+			if(err) return next(err);
+			// Apply encryption.
+			this.password = hash;
+			next(); // Exit the middleware.
+		});
+	});
 
 
 

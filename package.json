@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/hasratsabit/my-blog-page#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
