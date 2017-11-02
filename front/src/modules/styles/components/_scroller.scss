@@ -1,0 +1,22 @@
+
+::-webkit-scrollbar {
+	height: 5px;
+	width: 5px;
+	background: darken($lightBlue, 3%);
+	display: none;
+	transition: all 200ms linear;
+}
+
+.nav__side-nav:hover::-webkit-scrollbar {
+	display: block;
+	transition: all 200ms linear;
+}
+
+::-webkit-scrollbar-corner {
+	background: #444;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: $lightGray;
+	background: lighten($lightGray, 100%);
+}

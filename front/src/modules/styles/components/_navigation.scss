@@ -1,0 +1,182 @@
+.nav {
+
+	&__top-nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 20;
+		height: 60px;
+		width: 100%;
+		background: $lightBlue;
+		box-shadow: $shadow;
+		transition: all 200ms linear;
+		@include atSmall {
+			width: 80%;
+		}
+		@include atLarge {
+			width: 85%;
+		}
+
+		// JS class to change the width to 100%;
+		&--is-expanded {
+			width: 100%;
+			transition: all 200ms linear;
+		}
+	}
+
+	&__right-navbar {
+		position: absolute;
+		right: 0;
+		text-align: center;
+
+		li {
+			display: inline-block;
+		}
+
+		a {
+			display: inline-block;
+			padding: 19px;
+			color: #FFF;
+			opacity: 0.8;
+			transition: all 300ms linear;
+			&:hover,
+			&:focus {
+				opacity: 1;
+				background: $darkBlue;
+			}
+		}
+	}
+
+
+	&__side-nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		margin-left: -70%;
+		height: 100%;
+		width: 70%;
+		background: #FFF;
+		z-index: 11;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		transition: all 200ms linear;
+		&:hover {
+			overflow-y: scroll;
+		}
+		@include atSmall {
+			margin-left: 0;
+			width: 20%;
+		}
+		@include atLarge {
+			width: 15%;
+		}
+		// JS class to close SideNav
+		&--is-closed {
+			margin-left: 0;
+			transition: all 200ms linear;
+			@include atSmall {
+				margin-left: -20%;
+			}
+			@include atLarge {
+				margin-left: -15%;
+			}
+		}
+	}
+
+	&__user-box {
+		position: fixed;
+		top: 60px;
+		float: left;
+		z-index: 15;
+		height: 150px;
+		width: 70%;
+		margin-left: -70%;
+		text-align: center;
+		// background-image: url('/assets/images/user-bg.jpg');
+		background-size: cover;
+		transition: all 200ms linear;
+		@include atSmall {
+			top: 0;
+			width: 20%;
+			margin-left: 0;
+		}
+		@include atLarge {
+			width: 15%;
+		}
+
+		// JS class to close UserBox
+		&--is-closed {
+			margin-left: 0;
+			transition: all 200ms linear;
+			@include atSmall {
+				margin-left: -20%;
+			}
+			@include atLarge {
+				margin-left: -15%;
+			}
+		}
+	}
+
+	&__user-info {
+		height: 100%;
+		width: 100%;
+		background: rgba(black, 0.3);
+
+		img {
+			width: 70px;
+			border-radius: 50%;
+			margin-top: 10px;
+			border: 3px solid $lightBlue;
+		}
+
+		h1 {
+			font-size: 1.3rem;
+			text-transform: uppercase;
+			letter-spacing: 3px;
+			margin: 5px 0;
+			font-weight: 900;
+			color: #FFF;
+		}
+		h2 {
+			font-size: 1rem;
+			margin: 0;
+			color: #FFF;
+		}
+	}
+
+	&__sm-nav {
+		display: none; // Only displayed on larger device
+		position: fixed;
+		top: 60px;
+		left: 0;
+		z-index: -1;
+		visibility: hidden;
+		height: 100vh;
+		width: 60px;
+		background: #FFF;
+	  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		transition: all 200ms linear;
+		@include atSmall {
+			display: block;
+		}
+
+		a {
+			color: #444;
+			&:hover,
+			&:focus {
+				background-color: $lightGray;
+				color: $lightBlue;
+			}
+		}
+		.material-icons {
+			font-size: 1.5rem;
+		}
+
+		// Opens when SideNav is Closed.
+		&--is-open {
+			z-index: 0;
+			visibility: visible;
+			transition: all 100ms linear;
+		}
+	}
+
+}

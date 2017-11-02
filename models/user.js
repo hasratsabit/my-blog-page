@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
@@ -203,19 +203,24 @@ const Schema = mongoose.Schema;
 // 		 									PASSWORD ENCRYPTION
 // ==========================================================
 
-	UserSchema.pre('save', function(next) {
-		// First check if the password is modified before applying any encryption.
-		if(!this.isModified('password'));
-		// If not modified, Exit the middleware.
-		return next();
-		// Encrypt the password.
-		bcrypt.hash(this.password, null, null, function(err, hash) {
-			if(err) return next(err);
-			// Apply encryption.
-			this.password = hash;
-			next(); // Exit the middleware.
-		});
-	});
+// Schema Middleware to Encrypt Password
+UserSchema.pre('save', function(next) {
+  // Ensure password is new or modified before applying encryption
+  if (!this.isModified('password'))
+    return next();
+
+  // Apply encryption
+  bcrypt.hash(this.password, null, null, (err, hash) => {
+    if (err) return next(err); // Ensure no errors
+    this.password = hash; // Apply encryption to password
+    next(); // Exit middleware
+  });
+});
+
+// Methods to compare password to encrypted password upon login
+UserSchema.methods.comparePassword = function(password) {
+  return bcrypt.compareSync(password, this.password); // Return comparison of login password to password in database (true or false)
+};
 
 
 

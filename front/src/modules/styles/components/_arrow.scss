@@ -1,0 +1,9 @@
+.arrow {
+	transform: rotate(90deg);
+	transition: transform 200ms linear;
+
+	&--is-opened {
+		transform: rotate(-90deg);
+		transition: transform 200ms linear;
+	}
+}

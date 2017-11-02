@@ -34,7 +34,8 @@ const contactRoute = require('./routes/contact')(router);
 
 	app.use(cors({ origin: 'http://localhost:4200'}));
 	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(express.static(__dirname + '/client/dist'));
+	app.use(bodyParser.json());
+	app.use(express.static(__dirname + '/front/dist'));
 
 
 
@@ -47,8 +48,9 @@ const contactRoute = require('./routes/contact')(router);
 	app.use('/blogs', blogsRoute)
 	app.use('/contact', contactRoute)
 
+	// Other routes goes to the client side.
 	app.get('*', (req, res) => {
-	  res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+	  res.sendFile(path.join(__dirname + '/front/dist/index.html'));
 	});
 
 

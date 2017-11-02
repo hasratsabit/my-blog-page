@@ -1,0 +1,46 @@
+.navbar {
+	position: relative;
+	top: 210px;
+	height: 100%;
+	@include atSmall {
+		top: 150px;
+	}
+	.admin {
+		border-bottom: 1px solid $lightGray;
+	}
+	li {
+		position: relative;
+	}
+
+	a {
+		display: inline-block;
+		width: 100%;
+		color: #444;
+		border: 0;
+		font-size: 0.9rem;
+		&:focus,
+		&:hover {
+			background-color: #d9d9d9;
+			color: $lightBlue;
+		}
+	}
+
+	.arrow {
+		float: right;
+		margin-right: -10px;
+	}
+
+	.material-icons {
+		font-size: 1.4rem;
+	}
+
+	.sub-links {
+		background: whitesmoke;
+
+		a {
+			display: inline-block;
+			padding: 10px 0 10px 55px;
+		}
+	}
+
+}

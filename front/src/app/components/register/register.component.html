@@ -1,0 +1,85 @@
+<div class="row box">
+  <h1 class="box-header">Registeration</h1>
+
+  <div [ngClass]="registerMessageClass">
+    <p>{{ registerMessage }}</p>
+  </div>
+
+  <form [formGroup]="form" (submit)="registerUser() " class="col s12">
+    <div class="row">
+
+      <!-- Name -->
+      <div [ngClass]="{'has-error': form.controls.name.errors && form.controls.name.dirty, 'has-success': !form.controls.name.errors && form.controls.name.dirty }">
+        <div class="input-field col s12">
+          <input type="text" class="input-control" name="name" autocomplete="off" formControlName="name">
+          <label for="name">Name</label>
+          <ul>
+            <li *ngIf="form.controls.name.errors?.required && form.controls.name.dirty"> This field is required</li>
+            <li *ngIf="form.controls.name.errors?.minlength && form.controls.name.dirty || form.controls.name.errors?.maxlength && form.controls.name.dirty"> Your name must be at least 2 characters but no longer than 30</li>
+            <li *ngIf="form.controls.name.errors?.validateName && form.controls.name.dirty"> Your name must not contain special characters</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Username -->
+      <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty) ||  (!availableUsername && form.controls.username.dirty), 'has-success': !form.controls.username.errors && availableUsername }">
+        <div class="input-field col s12">
+          <input type="text" class="input-control" name="username" autocomplete="off" formControlName="username" (blur)="checkAvailableUsername()">
+          <label for="username">Username</label>
+          <ul>
+            <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty"> This field is required</li>
+            <li *ngIf="form.controls.username.errors?.minlength && form.controls.username.dirty || form.controls.username.errors?.maxlength && form.controls.username.dirty"> Your username must be at least 3 characters but no longer than 15</li>
+            <li *ngIf="form.controls.username.errors?.validateUsername && form.controls.username.dirty"> Your username can only contain characters and numbers</li>
+            <li *ngIf="availableUsernameMessage">{{ availableUsernameMessage }}</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- Email -->
+      <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!availableEmail && form.controls.email.dirty), 'has-success': !form.controls.email.errors && availableEmail }">
+        <div class="input-field col s12">
+          <input (blur)="checkAvailableEmail()" type="email" class="input-control" name="email" autocomplete="off" formControlName="email">
+          <label for="email">Email</label>
+          <ul>
+            <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty"> This field is required</li>
+            <li *ngIf="form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty"> Your email must be at least 3 characters but no longer than 30</li>
+            <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty"> Enter a valid E-mail address</li>
+            <li *ngIf="availableEmailMessage">{{ availableEmailMessage }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': !form.controls.password.errors && form.controls.password.dirty }">
+        <div class="input-field col s12">
+          <input type="password" class="input-control" name="password" autocomplete="off" formControlName="password">
+          <label for="password">Password</label>
+          <ul>
+            <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty"> This field is required</li>
+            <li *ngIf="form.controls.password.errors?.minlength && form.controls.password.dirty || form.controls.password.errors?.maxlength && form.controls.password.dirty"> Your password must be at least 8 characters but no longer than 35</li>
+            <li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty"> Your password must contain one uppercase, lowercase, number, and one special character</li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <!-- Confirm Password -->
+      <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPassword && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPassword}">
+        <div class="input-field col s12">
+          <input type="password" name="confirm" class="input-control" autocomplete="off"  formControlName="confirm" />
+          <label for="confirm">Confirm Password</label>
+        </div>
+        <!-- Validation -->
+        <ul >
+          <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">This field is required</li>
+          <li *ngIf="form.errors?.matchingPassword && form.controls.confirm.dirty">Password do not match</li>
+        </ul>
+      </div>
+
+      <button [disabled]="!form.valid || !availableEmail || !availableUsername" type="submit" name="button" class="button button-large button-blue">Register</button>
+
+    </div>
+  </form>
+</div>
