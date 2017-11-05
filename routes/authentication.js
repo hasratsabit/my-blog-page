@@ -125,5 +125,110 @@ module.exports = (router) => {
 	})
 
 
+
+// ==========================================================
+// 		 								LOGIN ROUTE
+// ==========================================================
+
+	router.post('/login', (req, res) => {
+		// Check if the username is provided.
+		if(!req.body.username){
+			// Respond if no username is provided.
+			res.json({ success: false, message: 'Please provide a username.'});
+		// Check if the password is proided.
+		}else if (!req.body.password) {
+			// Respond if the password is not provided.
+			res.json({ success: false, message: 'Please provide a password.'});
+		}else {
+			// Find the username in the database that's given by user.
+			User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
+				// Check for error.
+				if(err){
+					// Respond with error if there is one.
+					res.json({ success: false, message: err });
+					// Check if there is a user with given username.
+				}else if (!user) {
+					// Respond if the username is not found.
+					res.json({ success: false, message: 'Username was not found. '});
+				}else {
+					// Compare the password via method in the schema.
+					const validPassword = user.comparePassword(req.body.password);
+					// Check if the password matches the one in database.
+					if(!validPassword){
+						// Respond if the password is not matched with one in database.
+						res.json({ success: false, message: 'Password does not match.'});
+					}else {
+						// Create token to remember the logged in user.
+						const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
+						// Respond with success message afte user is validated to login.
+						res.json({
+							success: true,
+							message: 'You are successfully logged in.',
+							token: token,
+							user: {
+								username: user.username
+							}
+						});
+					}
+				}
+			});
+		}
+	});
+
+
+
+// ==========================================================
+// 		 						TOKEN INTERCEPT MIDDLEWARES
+// ==========================================================
+
+	// Note: This middleware intercepts the token that comes from the client side stored in the browser. Every route after this middleware has to be authenticated.
+
+	router.use((req, res, next) => {
+		// Intercept the token and store it in a variable.
+		const token = req.headers['authorization'];
+		// Check for the token.
+		if(!token){
+			// Respond if there is no token.
+			res.json({ success: false, message: 'Invalid request. No token was provided.'});
+		}else {
+			// Decrypt the token using the verify method on jwt.
+			jwt.verify(token, config.secret, (err, decoded) => {
+				// Check for the error.
+				if(err){
+					// Respond if there is error.
+					res.json({ success: false, message: 'Token invalid.' + err});
+				}else {
+					// Assign the token to a global variable to be accessible everywhere.
+					req.decoded = decoded;
+					next();
+				}
+			})
+		}
+	})
+
+
+
+// ==========================================================
+// 		 								GET PROFILE
+// ==========================================================
+
+	router.get('/userProfile', (req, res) => {
+		// Find the unique user id of the user from decoded token. The userId is stored in the token in the login route.
+		User.findOne({ _id: req.decoded.userId }).select('name username email password').exec((err, user) => {
+			// Check if there is error.
+			if(err){
+				// Respond if there is error.
+				res.json({ success: false, message: err });
+				// Check if the user exist.
+			}else if (!user) {
+				// Respond if the user is not exist.
+				res.json({ success: false, message: 'No user was found'});
+			}else {
+				// If there is user, send it to the front.
+				res.json({ success: true, user: user });
+			}
+		})
+	})
+
 return router;
 }

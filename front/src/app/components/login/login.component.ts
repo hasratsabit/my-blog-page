@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -7,7 +10,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+
+// ==========================================================
+// 		             VARIABLES
+// ==========================================================
+  form: FormGroup;
+  loginMessage;
+  loginMessageClass;
+  processing = false;
+
+
+// ==========================================================
+// 		             CONSTRUCTOR
+// ==========================================================
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+      this.createForm(); // Load the login form when the component is loaded.
+    }
+
+// ==========================================================
+// 		             CREATE FORM METHOD
+// ==========================================================
+  createForm() {
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required], // Validate the username field.
+      password: ['', Validators.required] // Validate the password field.
+    })
+  }
+
+
+// ==========================================================
+// 		             ENABLE FORM
+// ==========================================================
+  enableForm() {
+    this.form.controls['username'].enable();
+    this.form.controls['password'].enable();
+  }
+
+
+// ==========================================================
+// 		             DISABLE FORM
+// ==========================================================
+  disableForm() {
+    this.form.controls['username'].disable();
+    this.form.controls['password'].disable();
+  }
+
+
+// ==========================================================
+// 		            LOGIN
+// ==========================================================
+  loginUser() {
+    this.processing = true; // True Locks the login button when proccessing.
+    this.disableForm();
+    // Get the input values and store it in user object.
+    const user = {
+      username: this.form.get('username').value,
+      password: this.form.get('password').value
+    }
+
+    // Subscribe to the login method from service.
+    this.authService.loginUser(user).subscribe(data => {
+      // Check if the API responds with error.
+      if(!data.success){
+        this.processing = false; // Set the proccesing to false to unlock the form and login button.
+        this.loginMessage = data.message; // Give the error message from API.
+        this.loginMessageClass = 'alert error-alert'; // Set the class to error.
+        this.enableForm(); // Enable the the form for edit.
+      }else{
+        this.processing = true; // Set to true to lock the login button.
+        this.loginMessage = data.message; // Give the success message from API.
+        this.loginMessageClass = 'alert success-alert'; // Change the class to success.
+        this.disableForm();
+        this.authService.storeUserData(data.token, data.user); // Use this method to Store the token and user info coming from API.
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']); // After two second navigate to dashboard.
+        }, 2000);
+      }
+    })
+  }
 
   ngOnInit() {
   }

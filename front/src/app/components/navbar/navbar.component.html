@@ -6,9 +6,9 @@
 		</div>
 		<div class="nav__right-navbar">
 			<ul>
-				<li><a routerLink="/register" [routerLinkActive]="['active']">Register</a></li>
-				<li><a routerLink="/login" [routerLinkActive]="['active']">Login</a></li>
-				<li><a href="#">Logout</a></li>
+				<li *ngIf="!authService.userLoggedIn()"><a routerLink="/register" [routerLinkActive]="['active']">Register</a></li>
+				<li *ngIf="!authService.userLoggedIn()"><a routerLink="/login" [routerLinkActive]="['active']">Login</a></li>
+				<li *ngIf="authService.userLoggedIn()"><a href="#" (click)="onLogoutUser()">Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -25,7 +25,9 @@
 
 		<div class="navbar">
 			<ul class="admin">
-				<li><a href="#" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Dashboard</a></li>
+				<li><a routerLink="/" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Home</a></li>
+				<li *ngIf="authService.userLoggedIn()"><a routerLink="/dashboard" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Dashboard</a></li>
+				<li *ngIf="authService.userLoggedIn()"><a routerLink="/profile" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Profile</a></li>
 			</ul>
 		</div>
 	</div>
