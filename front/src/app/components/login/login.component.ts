@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import { AuthGuard } from "../../guards/auth.guard";
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   loginMessage;
   loginMessageClass;
   processing = false;
+  previousUrl;
 
 
 // ==========================================================
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authGuard: AuthGuard
   ) {
       this.createForm(); // Load the login form when the component is loaded.
     }
@@ -87,13 +90,31 @@ export class LoginComponent implements OnInit {
         this.disableForm();
         this.authService.storeUserData(data.token, data.user); // Use this method to Store the token and user info coming from API.
         setTimeout(() => {
-          this.router.navigate(['/dashboard']); // After two second navigate to dashboard.
+          // Check if user first attempted to access a different url which is defined in the authGuard.
+          if(this.previousUrl){
+            // If there is a first attempted url, navigate to that url.
+            this.router.navigate([this.previousUrl]);
+          }else{
+            this.router.navigate(['/dashboard']); // After two second navigate to dashboard.
+          }
         }, 2000);
       }
     })
   }
 
   ngOnInit() {
+    // Use the authguard stored url variable that if there is a url.
+    if(this.authGuard.redirectUrl) {
+      // If there is a url, set the class to red color.
+      this.loginMessageClass = "alert error-alert";
+      // Inform the user they need to login before accessing the route.
+      this.loginMessage = "You must be logged in to view this page. ";
+      // Set the url to the stored url.
+      this.previousUrl = this.authGuard.redirectUrl;
+      // Clear the url otherwise user will always be routed to that url.
+      this.authGuard.redirectUrl = undefined;
+    }
+
   }
 
 }
