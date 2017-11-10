@@ -8,7 +8,7 @@ const cors = require('cors');
 const config = require('./config/database');
 
 const authRoute = require('./routes/authentication')(router);
-const blogsRoute = require('./routes/blog')(router);
+const blogsRoute = require('./routes/blogs')(router);
 const contactRoute = require('./routes/contact')(router);
 
 
@@ -45,7 +45,7 @@ const contactRoute = require('./routes/contact')(router);
 // ==========================================================
 
 	app.use('/authentication', authRoute);
-	app.use('/blogs', blogsRoute)
+	app.use('/blogs', blogsRoute);
 	app.use('/contact', contactRoute)
 
 	// Other routes goes to the client side.

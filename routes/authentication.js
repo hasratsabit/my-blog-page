@@ -180,7 +180,7 @@ module.exports = (router) => {
 // ==========================================================
 // 		 						TOKEN INTERCEPT MIDDLEWARES
 // ==========================================================
-
+	//
 	// Note: This middleware intercepts the token that comes from the client side stored in the browser. Every route after this middleware has to be authenticated.
 
 	router.use((req, res, next) => {

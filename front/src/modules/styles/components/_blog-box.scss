@@ -1,0 +1,96 @@
+.blog {
+	position: relative;
+	height: auto;
+	background: #FFF;
+	box-shadow: $shadow;
+	padding: 20px;
+	border-radius: 5px;
+	@include clearfix;
+
+	&__bio {
+		span {
+			color: $genericColor;
+			font-size: 0.7rem;
+		}
+
+		a {
+			font-size: 1rem;
+			text-transform: uppercase;
+			font-weight: 900;
+			color: $lightYellow;
+		}
+	}
+
+	&__title {
+
+		h1 {
+			font-size: 2rem;
+			font-weight: 900;
+			font-family: sans-serif;
+			text-transform: capitalize;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			a {
+				color: $darkGray;
+			}
+		}
+	}
+
+	&__text {
+		color: $genericColor;
+		margin-bottom: 70px;
+	}
+
+	&__img {
+		width: 50%;
+		float: right;
+
+		img {
+			height: 250px;
+			width: 250px;
+			border-radius: 5px;
+			box-shadow: $shadow;
+			margin: 10px 0 0 10px;
+			@include atLarge {
+				width: 220px;
+				height: 220px;
+				margin: 0;
+				float: right;
+			}
+		}
+	}
+
+	&__media {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 50px;
+		width: 100%;
+		border-top: 1px solid $lightGray;
+
+		a {
+			margin: 7px 15px;
+			display: inline-block;
+			font-size: 1.3rem;
+			color: $genericColor;
+		}
+
+		span {
+			color: $genericColor;
+		}
+
+		.read-more {
+			float: right;
+			font-size: 1.2rem;
+			margin: 10px;
+		}
+	}
+
+	&__content {
+		width: 50%;
+		float: left;
+	}
+}

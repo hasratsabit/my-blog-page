@@ -15,7 +15,7 @@
 
 	<div class="nav__user-box">
 		<div class="nav__user-info">
-			<!-- <img src="/assets/images/sm-profile.jpg" alt=""> -->
+			<img src="/assets/images/profile.jpg" alt="">
 			<h1 class="title">Hasrat Sabit</h1>
 			<h2 class="title">Full Stack Developer</h2>
 		</div>
@@ -26,6 +26,7 @@
 		<div class="navbar">
 			<ul class="admin">
 				<li><a routerLink="/" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Home</a></li>
+				<li><a routerLink="/blogs" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Blogs</a></li>
 				<li *ngIf="authService.userLoggedIn()"><a routerLink="/dashboard" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Dashboard</a></li>
 				<li *ngIf="authService.userLoggedIn()"><a routerLink="/profile" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Profile</a></li>
 			</ul>

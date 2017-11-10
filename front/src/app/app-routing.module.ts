@@ -6,6 +6,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { HomeComponent } from "./components/home/home.component";
+import { BlogComponent } from "./components/blog/blog.component";
+
 import { AuthGuard } from "./guards/auth.guard";
 import { NotAuthGuard } from "./guards/notAuth.guard";
 
@@ -13,6 +15,10 @@ const appRoutes: Routes = [
 	{
 		path: '',
 		component: HomeComponent
+	},
+	{
+		path: 'blogs',
+		component: BlogComponent
 	},
 	{
 		path: 'register',

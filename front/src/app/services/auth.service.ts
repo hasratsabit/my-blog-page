@@ -9,6 +9,7 @@ export class AuthService {
   // Variables
   domain = "http://localhost:8080";
   user;
+  name;
   authToken;
   options;
 

@@ -1,0 +1,7 @@
+.hover {
+	transition: all 300ms linear;
+	a:hover {
+		color: $lightBlue;
+		transition: all 300ms linear;
+	}
+}

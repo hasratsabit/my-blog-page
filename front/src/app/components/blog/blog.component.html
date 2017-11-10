@@ -1,0 +1,41 @@
+<div class="row box">
+  <h1 class="box-header">Post New Blog</h1>
+
+  <div [ngClass]="postBlogClass">
+    <p>{{ postBlogMessage }}</p>
+  </div>
+
+  <form [formGroup]="form" (submit)="onNewBlogPost() " class="col s12">
+    <div class="row">
+
+      <!-- Blog Title -->
+      <div [ngClass]="{'has-error': form.controls.title.errors && form.controls.title.dirty, 'has-success': form.controls.title.valid && form.controls.title.dirty}">
+        <div class="input-field col s12">
+          <input type="text" class="input-control" name="title" autocomplete="off" formControlName="title">
+          <label for="title">Blog Title</label>
+          <ul>
+            <li *ngIf="form.controls.title.errors?.required && form.controls.title.dirty"> The title field is required. </li>
+            <li *ngIf="form.controls.title.errors?.validTitle && form.controls.title.dirty"> The title must not contain special characters </li>
+            <li *ngIf="(form.controls.title.errors?.minlength && form.controls.title.dirty) || (form.controls.title.errors?.maxlength && form.controls.title.dirty)"> The title should be at least 5 characters but no more than 100</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Blog Body -->
+      <div [ngClass]="{'has-error': form.controls.body.errors && form.controls.body.dirty, 'has-success': form.controls.body.valid && form.controls.body.dirty }">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" formControlName="body" name="body" autocomplete="off"></textarea>
+          <label for="body">Blog Body</label>
+          <ul>
+            <li *ngIf="form.controls.body.errors?.required && form.controls.body.dirty"> The body field is required.</li>
+            <li *ngIf="(form.controls.body.errors?.minlength && form.controls.body.dirty) || (form.controls.body.errors?.maxlength && form.controls.body.dirty)"> The body should be at least 5 letters but no more than 1500.
+          </ul>
+        </div>
+      </div>
+
+
+      <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-blue">Post Blog</button>
+
+    </div>
+  </form>
+</div>

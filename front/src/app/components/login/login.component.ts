@@ -102,6 +102,12 @@ export class LoginComponent implements OnInit {
     })
   }
 
+
+
+// ==========================================================
+// 		                     LIFE CYCLE
+// ==========================================================
+
   ngOnInit() {
     // Use the authguard stored url variable that if there is a url.
     if(this.authGuard.redirectUrl) {
