@@ -19,18 +19,22 @@ module.exports = (router) => {
 			res.json({ success: false, message: 'Body is required.'});
 			// Check if there is an author for the blog.
 		}else if(!req.body.createdBy){
-			// Respond if there is no body.
+			// Respond if there is no author.
 			res.json({ success: false, message: 'Author is required.'});
-		}else {
+		}else if(!req.body.username){
+			// Respond if there is no username.
+			res.json({ success: false, message: 'Author is required.'});
+		}else{
 			// Store all the incoming input fields in the blog object based on the schema.
 			const blog = new Blog({
 				title: req.body.title,
 				body: req.body.body,
-				createdBy: req.body.createdBy
+				createdBy: req.body.createdBy,
+				username: req.body.username
 			})
 
 			// Save the blog object.
-			blog.save((err) => {
+			blog.save((err, blog) => {
 				// Check if there is error while saving.
 				if(err){
 					// Check if it is validation error.
@@ -53,7 +57,7 @@ module.exports = (router) => {
 					}
 				}else {
 					// Respond with Sucess if blog passed validation.
-					res.json({ success: true, message: 'Blog successfully posted.'});
+					res.json({ success: true, message: 'Blog successfully posted.', blog: blog });
 				}
 			})
 		}
@@ -78,7 +82,7 @@ module.exports = (router) => {
 			}else {
 				res.json({ success: true, blog: blogs });
 			}
-		}).sort({ '_id': -1 }); // Sort from newest to oldest. 
+		}).sort({ '_id': -1 }); // Sort from newest to oldest.
 	})
 
 

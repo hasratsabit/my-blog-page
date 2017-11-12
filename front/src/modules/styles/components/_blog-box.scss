@@ -5,6 +5,8 @@
 	box-shadow: $shadow;
 	padding: 20px;
 	border-radius: 5px;
+	margin: 20px 0;
+	min-width: 100%;
 	@include clearfix;
 
 	&__bio {
@@ -14,10 +16,10 @@
 		}
 
 		a {
-			font-size: 1rem;
+			font-size: 0.8rem;
 			text-transform: uppercase;
 			font-weight: 900;
-			color: $lightYellow;
+			color: $lightBlue;
 		}
 	}
 
@@ -41,12 +43,12 @@
 
 	&__text {
 		color: $genericColor;
-		margin-bottom: 70px;
 	}
 
 	&__img {
 		width: 50%;
 		float: right;
+		margin-bottom: 70px;
 
 		img {
 			height: 250px;

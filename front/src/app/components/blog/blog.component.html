@@ -2,7 +2,7 @@
   <h1 class="box-header">Post New Blog</h1>
 
   <div [ngClass]="postBlogClass">
-    <p>{{ postBlogMessage }}</p>
+    <p *ngIf="postBlogMessage">{{ postBlogMessage }} &nbsp;<a [routerLink]="['/read-more', this.newBlogLink._id]">Click here to view the blog.</a></p>
   </div>
 
   <form [formGroup]="form" (submit)="onNewBlogPost() " class="col s12">
@@ -38,4 +38,39 @@
 
     </div>
   </form>
+</div>
+
+<div class="box">
+      <h1 class="box-header">View All Blogs</h1>
+      <div class="input-field col s12">
+        <input type="text" class="input-control" name="search" autocomplete="off">
+        <label for="title">Search For Blogs</label>
+      </div>
+    <table class="bordered centered highlight">
+    <thead>
+      <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Author</th>
+          <th>Comments</th>
+          <th>Likes</th>
+          <th>View Blog</th>
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let blog of newBlogPost">
+        <td><a [routerLink]="['/read-more', blog._id]">{{ blog.title }}</a></td>
+        <td>{{ blog.date | date: 'MMM dd, yyyy'}}</td>
+        <td>{{ blog.createdBy }}</td>
+        <td>{{ blog.commentNum }}</td>
+        <td>{{ blog.likes }}</td>
+        <td><a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -26,7 +26,7 @@
 		<div class="navbar">
 			<ul class="admin">
 				<li><a routerLink="/" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Home</a></li>
-				<li><a routerLink="/blogs" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Blogs</a></li>
+				<li><a *ngIf="authService.userLoggedIn()" routerLink="/blogs" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Blogs</a></li>
 				<li *ngIf="authService.userLoggedIn()"><a routerLink="/dashboard" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Dashboard</a></li>
 				<li *ngIf="authService.userLoggedIn()"><a routerLink="/profile" [routerLinkActive]="['active']" class="collapsible-header  waves-effect waves-cyan"><i class=" material-icons">dashboard</i>Profile</a></li>
 			</ul>

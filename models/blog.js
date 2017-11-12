@@ -121,8 +121,11 @@ const BlogSchema = new Schema({
 	title: { type: String, required: true, validate: titleValidators },
 	body: { type: String, required: true, validate: bodyValidators},
 	createdBy: { type: String, required: true },
+	username: { type: String, required: true },
 	date: { type: Date, default: Date.now()},
-	likedBy: { type: Array, default: 0 },
+	likes: { type: Number, default: 0 },
+	likedBy: { type: Array },
+	commentNum: { type: Number, default: 0 },
 	comments: [{
 		comment: { type: String, validate: commentValidator },
 		commentator: { type: String }
