@@ -1,6 +1,5 @@
-<div class="row box">
-  <h1 class="box-header">Post New Blog</h1>
 
+<div class="row box" *ngIf="newPost">
   <div [ngClass]="postBlogClass">
     <p *ngIf="postBlogMessage">{{ postBlogMessage }} &nbsp;<a [routerLink]="['/read-more', this.newBlogLink._id]">Click here to view the blog.</a></p>
   </div>
@@ -21,6 +20,14 @@
         </div>
       </div>
 
+      <mat-form-field>
+        <mat-select placeholder="Select Catergory">
+          <mat-option >Option 1</mat-option>
+          <mat-option >Option 2</mat-option>
+          <mat-option >Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <!-- Blog Body -->
       <div [ngClass]="{'has-error': form.controls.body.errors && form.controls.body.dirty, 'has-success': form.controls.body.valid && form.controls.body.dirty }">
         <div class="input-field col s12">
@@ -36,19 +43,23 @@
 
       <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-blue">Post Blog</button>
 
+      <button [disabled]="proccessing" type="button" (click)="cancelPostForm()" name="button" class="button button-large button-yellow">Cancel</button>
+
     </div>
   </form>
 </div>
 
 <div class="box">
-      <h1 class="box-header">View All Blogs</h1>
+      <button *ngIf="!newPost" type="button" class="button button-yellow button-large" (click)="loadBlogForm()" name="button">New Post</button>
       <div class="input-field col s12">
         <input type="text" class="input-control" name="search" autocomplete="off">
         <label for="title">Search For Blogs</label>
       </div>
-    <table class="bordered centered highlight">
-    <thead>
+    <table class="bordered centered highlight table">
+    <thead class="table__header">
       <tr>
+          <th>No.</th>
+          <th>Select</th>
           <th>Title</th>
           <th>Date</th>
           <th>Author</th>
@@ -62,14 +73,16 @@
 
     <tbody>
       <tr *ngFor="let blog of newBlogPost">
-        <td><a [routerLink]="['/read-more', blog._id]">{{ blog.title }}</a></td>
+        <td>1</td>
+        <td><mat-checkbox class="table__check-box"></mat-checkbox></td>
+        <td><a [routerLink]="['/read-more', blog._id]" class="table__title">{{ blog.title }}</a></td>
         <td>{{ blog.date | date: 'MMM dd, yyyy'}}</td>
         <td>{{ blog.createdBy }}</td>
         <td>{{ blog.commentNum }}</td>
         <td>{{ blog.likes }}</td>
-        <td><a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a></td>
-        <td><a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-        <td><a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/read-more', blog._id]" class="table__read">Read More</a></td>
+        <td><a [routerLink]="['/edit-blog', blog._id]" class="table__edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/delete-blog', blog._id]" class="table__delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
       </tr>
     </tbody>
   </table>

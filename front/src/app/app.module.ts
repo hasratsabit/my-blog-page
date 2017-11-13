@@ -6,6 +6,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { FlashMessagesModule } from "angular2-flash-messages";
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatSelectModule,
+  MatCheckboxModule
+
+  } from '@angular/material';
+
 import { AuthService } from "./services/auth.service";
 import { BlogService } from "./services/blog.service";
 import { AuthGuard } from "./guards/auth.guard";
@@ -22,6 +29,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { ReadMoreComponent } from './components/blog/read-more/read-more.component';
+
+
 
 @NgModule({
   declarations: [
@@ -43,7 +52,11 @@ import { ReadMoreComponent } from './components/blog/read-more/read-more.compone
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    BrowserAnimationsModule,
+
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
   bootstrap: [AppComponent]

@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @import "./modules/styles/base/mixins";
 @import "./modules/styles/base/variables";
 @import "./modules/styles/base/global";
@@ -16,3 +18,4 @@
 @import "./modules/styles/components/blog-box";
 @import "./modules/styles/components/divider";
 @import "./modules/styles/components/hover";
+@import "./modules/styles/components/table";

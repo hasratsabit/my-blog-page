@@ -1,0 +1,31 @@
+.table {
+
+
+	&__title {
+		text-transform: capitalize;
+		color: $lightBlue;
+	}
+
+	&__read {
+		color: $lightBlue;
+		font-size: 0.8rem;
+	}
+
+	&__edit {
+		color: $lightYellow;
+	}
+
+	&__delete {
+		color: $lightRed;
+	}
+}
+
+
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $lightBlue !important;
+}
+
+.mat-ripple-element {
+  background: rgba($lightBlue, 0.3) !important;
+}

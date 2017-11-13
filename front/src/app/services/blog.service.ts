@@ -6,7 +6,7 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 export class BlogService {
 
 // ==========================================================
-//                     CREATE HEADER 
+//                     CREATE HEADER
 // ==========================================================
   options;
   domain = this.authService.domain;
@@ -42,8 +42,7 @@ export class BlogService {
 //                     GET ALL BLOGS
 // ==========================================================
   getAllBlogs() {
-    this.createAuthenticationHeaders();
-    return this.http.get(this.domain + '/blogs/getAllBlogs', this.options).map(res => res.json());
+    return this.http.get(this.domain + '/blogs/getAllBlogs').map(res => res.json());
   }
 
 }

@@ -23,6 +23,7 @@ export class BlogComponent implements OnInit {
   processing = false; // Conditional variable that determines to unable or disable the submit button.
   newBlogPost; // All Fetched blogs are assigned to this variable which will be used in the template.
   newBlogLink; // This stores the posted blog link if user wants to click on it.
+  newPost = false // This hides the New Post button.
 
 
 // ==========================================================
@@ -89,7 +90,13 @@ export class BlogComponent implements OnInit {
   }
 
 
+  loadBlogForm(){
+    this.newPost = true;
+  }
 
+  cancelPostForm() {
+    this.newPost = false;
+  }
 
 // ==========================================================
 //                   POSTING NEW BLOG
@@ -145,12 +152,17 @@ export class BlogComponent implements OnInit {
 
 
 
+// ==========================================================
+// 		                    LIFE CYCLE
+// ==========================================================
   ngOnInit() {
+    // Use the getProfile method in authService to load the logged in user information.
     this.authService.getProfile().subscribe(profile => {
-      this.name = profile.user.name;
-      this.username = profile.user.username;
+      this.name = profile.user.name; // Assign the user name to name variable.
+      this.username = profile.user.username; // Assign the user username to username variable.
     })
 
+    // Call the getAllBlogs metod to update the blog feed.
     this.getAllBlogs();
   }
 
