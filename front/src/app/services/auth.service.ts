@@ -18,30 +18,6 @@ export class AuthService {
   ) { }
 
   // ==========================================================
-  // 		             STORE USER DATA
-  // ==========================================================
-
-    // This will be used in the login component to store the use info and token in the browser which is comming from API.
-    storeUserData(token, user){
-      localStorage.setItem('token', token); // The name is token and stores the token.
-      localStorage.setItem('user', JSON.stringify(user)); // The name is user and stores the user.
-      this.authToken = token; // Assign the token to a variable to use in other methods.
-      this.user = user; // Assign the user to a variable to use in other methods.
-    }
-
-
-  // ==========================================================
-  // 		             LOAD TOKEN
-  // ==========================================================
-
-    // This method loads token from the browser which is stored by storeUserData when user signed in.
-
-    loadToken(){
-      this.authToken = localStorage.getItem('token');
-    }
-
-
-  // ==========================================================
   // 		             AUTHORIZATION HEADERS
   // ==========================================================
     createAuthorizationHeader() {
@@ -53,6 +29,18 @@ export class AuthService {
         })
       })
     }
+
+
+
+// ==========================================================
+// 		             LOAD TOKEN
+// ==========================================================
+
+  // This method loads token from the browser which is stored by storeUserData when user signed in.
+
+  loadToken(){
+    this.authToken = localStorage.getItem('token');
+  }
 
 // ==========================================================
 // 		                REGISTER USER
@@ -110,7 +98,17 @@ export class AuthService {
     return this.http.get(this.domain + '/authentication/userProfile', this.options).map(res => res.json());
   }
 
+// ==========================================================
+// 		             STORE USER DATA
+// ==========================================================
 
+  // This will be used in the login component to store the use info and token in the browser which is comming from API.
+  storeUserData(token, user){
+    localStorage.setItem('token', token); // The name is token and stores the token.
+    localStorage.setItem('user', JSON.stringify(user)); // The name is user and stores the user.
+    this.authToken = token; // Assign the token to a variable to use in other methods.
+    this.user = user; // Assign the user to a variable to use in other methods.
+  }
 
 
 }

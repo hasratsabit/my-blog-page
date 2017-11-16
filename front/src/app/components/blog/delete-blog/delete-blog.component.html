@@ -1,3 +1,29 @@
-<p>
-  delete-blog works!
-</p>
+<div class="model">
+
+  <div [ngClass]="deleteMessageClass">
+    <p>{{ deleteMessage }}</p>
+  </div>
+
+
+
+  <div class="model__container"  *ngIf="showModel">
+    <div class="model__title">
+      <h3>Delete</h3>
+    </div>
+    <div class="model__message">
+      <p>Are you sure that you want to delete the following blog:</p>
+    </div>
+    <div class="model__blog">
+       <h1><a href="#" class="title">{{ blog.title }}</a></h1>
+       <a href="#" class="author">by: {{ blog.createdBy }}</a>
+    </div>
+    <div class="model__icon">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    </div>
+
+    <div class="model__controller">
+      <button type="button" name="button" class="button button-large button-clear-yellow" (click)="goBack()">Cancel</button>
+      <button type="button" name="button" class="button button-large button-clear-red" (click)="onDeleteBlog()">Delete</button>
+    </div>
+  </div>
+</div>

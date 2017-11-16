@@ -41,16 +41,16 @@
       </div>
 
 
-      <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-blue">Post Blog</button>
+      <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-clear-blue">Post Blog</button>
 
-      <button [disabled]="proccessing" type="button" (click)="cancelPostForm()" name="button" class="button button-large button-yellow">Cancel</button>
+      <button [disabled]="proccessing" type="button" (click)="cancelPostForm()" name="button" class="button button-large button-clear-yellow">Cancel</button>
 
     </div>
   </form>
 </div>
 
 <div class="box">
-      <button *ngIf="!newPost" type="button" class="button button-yellow button-large" (click)="loadBlogForm()" name="button">New Post</button>
+      <button *ngIf="!newPost" type="button" class="button button-clear-blue button-large" (click)="loadBlogForm()" name="button">New Post</button>
       <div class="input-field col s12">
         <input type="text" class="input-control" name="search" autocomplete="off">
         <label for="title">Search For Blogs</label>
@@ -80,9 +80,9 @@
         <td>{{ blog.createdBy }}</td>
         <td>{{ blog.commentNum }}</td>
         <td>{{ blog.likes }}</td>
-        <td><a [routerLink]="['/read-more', blog._id]" class="table__read">Read More</a></td>
-        <td><a [routerLink]="['/edit-blog', blog._id]" class="table__edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-        <td><a [routerLink]="['/delete-blog', blog._id]" class="table__delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/read-more/', blog._id]" class="table__read">Read More</a></td>
+        <td><a [routerLink]="['/edit-blog/', blog._id]" class="table__edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+        <td><a [routerLink]="['/delete-blog/', blog._id]" class="table__delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
       </tr>
     </tbody>
   </table>

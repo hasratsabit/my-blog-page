@@ -9,7 +9,8 @@ import { FlashMessagesModule } from "angular2-flash-messages";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatFormFieldModule
 
   } from '@angular/material';
 
@@ -56,7 +57,8 @@ import { ReadMoreComponent } from './components/blog/read-more/read-more.compone
     BrowserAnimationsModule,
 
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
   bootstrap: [AppComponent]

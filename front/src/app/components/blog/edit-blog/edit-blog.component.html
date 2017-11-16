@@ -1,3 +1,24 @@
-<p>
-  edit-blog works!
-</p>
+<div class="row box">
+  <div [ngClass]="editMessageClass">
+    <p *ngIf="editMessage">{{editMessage}} <a (click)="clearTimeOut()" [routerLink]="['/read-more', this.edittedBlog._id]">Click here to view the blog.</a></p>
+  </div>
+  <form (submit)="updateBlog()">
+
+    <div class="input-field col s12">
+      <input [disabled]="proccessing" type="text" class="input-control" name="title" value="" [(ngModel)]="blog.title" #title="ngModel">
+      <label for="title">Title</label>
+    </div>
+
+      <div class="input-field col s12">
+        <textarea [disabled]="proccessing" id="textarea1" class="materialize-textarea" name="body" [(ngModel)]="blog.body" #body="ngModel"></textarea>
+        <label for="body">Blog Body</label>
+      </div>
+
+      <button [disabled]="proccessing" type="submit" name="button" class="button button-large button-clear-blue">Save Changes</button>
+
+      <a [routerLink]="['/delete-blog/', blog._id]"><button [disabled]="proccessing" type="button" name="button" class="button button-large button-clear-red">Delete</button></a>
+
+      <button [disabled]="proccessing" type="button" name="button" (click)="goBack()" class="button button-large button-clear-yellow">Cancel</button>
+
+  </form>
+</div>

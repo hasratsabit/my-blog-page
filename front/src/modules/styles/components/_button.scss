@@ -2,6 +2,7 @@
 	position: relative;
 	border: 0;
 	border-radius: 3px;
+	margin: 0 10px;
 }
 
 
@@ -13,7 +14,7 @@
 
 .button-large {
 	font-size: 1.2rem;
-	font-weight: 400;
+	font-weight: 900;
 	padding: 10px 20px;
 }
 
@@ -42,5 +43,35 @@
 	transition: all 300ms ease-in-out;
 	&:hover {
 		background: $lightYellow;
+	}
+}
+
+.button-clear-blue {
+	border: 1px solid $lightBlue;
+	color: $lightBlue;
+	transition: all 300ms ease-in-out;
+	&:hover {
+		background: $lightBlue;
+		color: #FFF;
+	}
+}
+
+.button-clear-red {
+	border: 1px solid $lightRed;
+	color: $lightRed;
+	transition: all 300ms ease-in-out;
+	&:hover {
+		background: $lightRed;
+		color: #FFF;
+	}
+}
+
+.button-clear-yellow {
+	border: 1px solid $lightYellow;
+	color: $lightYellow;
+	transition: all 300ms ease-in-out;
+	&:hover {
+		background: $lightYellow;
+		color: #FFF;
 	}
 }

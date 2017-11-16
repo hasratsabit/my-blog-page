@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from "@angular/common";
+import { BlogService } from '../../../services/blog.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-read-more',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReadMoreComponent implements OnInit {
 
-  constructor() { }
+  currentUrl; // Stores the single blog url/id.
+  readMoreClass;
+  readMoreMessage;
+  currentData
+  blog = {
+    title: String,
+    body: String,
+    author: String,
+    date: Date,
+    likes: Number,
+    commentNum: Number
+  }
+
+  constructor(
+    private blogService: BlogService,
+    private location: Location,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+
+  ) { }
 
   ngOnInit() {
+
+    // Grab the current blog url from the browser.
+    this.currentUrl = this.activatedRoute.snapshot.params;
+
+    this.blogService.getSingleBlog(this.currentUrl.id).subscribe(data => {
+      this.blog = data.blog;
+    })
   }
 
 }

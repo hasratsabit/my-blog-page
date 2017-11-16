@@ -184,27 +184,23 @@ module.exports = (router) => {
 	// Note: This middleware intercepts the token that comes from the client side stored in the browser. Every route after this middleware has to be authenticated.
 
 	router.use((req, res, next) => {
-		// Intercept the token and store it in a variable.
-		const token = req.headers['authorization'];
-		// Check for the token.
-		if(!token){
-			// Respond if there is no token.
-			res.json({ success: false, message: 'Invalid request. No token was provided.'});
-		}else {
-			// Decrypt the token using the verify method on jwt.
-			jwt.verify(token, config.secret, (err, decoded) => {
-				// Check for the error.
-				if(err){
-					// Respond if there is error.
-					res.json({ success: false, message: 'Token invalid.' + err});
-				}else {
-					// Assign the token to a global variable to be accessible everywhere.
-					req.decoded = decoded;
-					next();
-				}
-			})
-		}
-	})
+    const token = req.headers['authorization']; // Create token found in headers
+    // Check if token was found in headers
+    if (!token) {
+      res.json({ success: false, message: 'No token provided' }); // Return error
+    } else {
+      // Verify the token is valid
+      jwt.verify(token, config.secret, (err, decoded) => {
+        // Check if error is expired or invalid
+        if (err) {
+          res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+        } else {
+          req.decoded = decoded; // Create global variable to use in any request beyond
+          next(); // Exit middleware
+        }
+      });
+    }
+  });
 
 
 

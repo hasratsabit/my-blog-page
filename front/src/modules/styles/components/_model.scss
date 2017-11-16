@@ -1,0 +1,89 @@
+.model {
+	position: absolute;
+	min-height: 100%;
+	min-width: 100%;
+	background: rgba(0,0,0,0.3);
+
+	&__message {
+		text-align: center;
+		padding: 20px 10px;
+
+		p {
+			font-size: 1.7rem;
+		}
+	}
+
+	&__title {
+		min-width: 100%;
+		padding: 15px;
+		background: $lightYellow;
+		border-radius: 5px 5px 0 0;
+		color: white;
+
+		h3 {
+			padding: 0;
+			margin: 0;
+			text-align: center;
+			font-size: 1rem;
+			font-weight: 900;
+			text-transform: uppercase;
+		}
+
+		// i {
+		// 	position: absolute;
+		// 	left: 20px;
+		// 	top: 15px;
+		// 	font-size: 25px;
+		// }
+	}
+
+	&__blog {
+		position: absolute;
+		right: 35%;
+		top: 55%;
+		text-align: center;
+		text-transform: capitalize;
+
+		h1 {
+			font-size: 1.5rem;
+			color: $lightBlue;
+			padding: 0;
+			margin: 0;
+		}
+		.author {
+			font-size: 0.8rem;
+			color: $genericColor;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 45%;
+		left: 15%;
+
+		i {
+			font-size: 70px;
+			color: $lightYellow;
+			border-radius: 3px;
+		}
+	}
+	&__container {
+		height: 300px;
+		width: 40%;
+		background: #FFF;
+		border-radius: 5px;
+		position: absolute;
+		left: 20%;
+		top: 20%;
+	}
+
+	&__controller {
+		position: absolute;
+		bottom: 15px;
+		right: 10px;
+
+		button {
+			margin-right: 10px;
+		}
+	}
+}
