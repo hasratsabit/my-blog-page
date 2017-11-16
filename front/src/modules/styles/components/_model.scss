@@ -2,14 +2,15 @@
 	position: absolute;
 	min-height: 100%;
 	min-width: 100%;
-	background: rgba(0,0,0,0.3);
 
 	&__message {
 		text-align: center;
 		padding: 20px 10px;
+		text-transform: capitalize;
 
 		p {
 			font-size: 1.7rem;
+			font-family: $source;
 		}
 	}
 
@@ -39,8 +40,9 @@
 
 	&__blog {
 		position: absolute;
-		right: 35%;
-		top: 55%;
+		right: 25%;
+		top: 50%;
+		min-width: 50%;
 		text-align: center;
 		text-transform: capitalize;
 

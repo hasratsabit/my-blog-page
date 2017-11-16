@@ -14,6 +14,7 @@ export class DeleteBlogComponent implements OnInit {
   deleteMessageClass;
   deleteMessage;
   showModel = false;
+  turnOnModelClass;
 
   blog = {
     title: String,
@@ -49,6 +50,7 @@ export class DeleteBlogComponent implements OnInit {
     this.location.back();
   }
   ngOnInit() {
+    this.turnOnModelClass = 'model--show-model';
     this.showModel = true;
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.blogService.getSingleBlog(this.currentUrl.id).subscribe(data => {

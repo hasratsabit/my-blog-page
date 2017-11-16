@@ -10,7 +10,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatSelectModule,
   MatCheckboxModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatDialogModule
 
   } from '@angular/material';
 
@@ -58,7 +59,8 @@ import { ReadMoreComponent } from './components/blog/read-more/read-more.compone
 
     MatCheckboxModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
   bootstrap: [AppComponent]
