@@ -1,30 +1,29 @@
 <div class="row">
-  <div class="col s12 m6 " *ngFor="let blog of newBlogPost">
+  <div class="col s12 m6 l4" *ngFor="let blog of newBlogPost">
     <div class="blog" >
       <div class="blog__img">
         <img src="/assets/images/corn.jpg" alt="">
       </div>
       <div class="blog__content">
         <div class="blog__bio">
-          <a href="#"> {{ blog.createdBy }}</a><br>
+          <a href="#"> {{ blog.createdBy }}</a>
           <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.date | date:'MMMM dd, yyyy' }}</span>
         </div>
         <div class="blog__title">
           <h1><a [routerLink]="['/read-more', blog._id]">{{ blog.title}}</a></h1>
         </div>
         <div class="blog__text">
-            <p>{{ blog.body | slice:0:20  }}</p>
+            <p>{{ blog.body | slice:0:80 }}....</p>
         </div>
 
-
-      </div>
-      <div class="blog__media hover">
-        <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a><span>{{ blog.likes }}</span>
-        <a href="#"><i class="fa fa-comment" aria-hidden="true"></i></a><span>{{ blog.commentNum }}</span>
-        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a><span>0</span>
-        <a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-        <a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a>
-        <a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+        <div class="blog__media hover">
+          <button type="button" name="button" class="button" (click)="likeBlog(blog._id)"><i class="fa fa-heart" aria-hidden="true"></i></button><span>{{ blog.likes }}</span>
+          <a href="#"><i class="fa fa-comment" aria-hidden="true"></i></a><span>{{ blog.commentNum }}</span>
+          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a><span>0</span>
+          <a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          <a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+        </div>
       </div>
     </div>
   </div>

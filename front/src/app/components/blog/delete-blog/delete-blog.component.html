@@ -14,7 +14,7 @@
       <p>Do you want to delete the <br> following blog:</p>
     </div>
     <div class="model__blog">
-       <h1><a href="#" class="title">{{ blog.title }}</a></h1>
+       <h1><a [routerLink]="['/read-more', blog._id]" class="title">{{ blog.title }}</a></h1>
        <a href="#" class="author">by: {{ blog.createdBy }}</a>
     </div>
     <div class="model__icon">

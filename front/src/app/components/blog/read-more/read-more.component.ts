@@ -13,7 +13,7 @@ export class ReadMoreComponent implements OnInit {
   currentUrl; // Stores the single blog url/id.
   readMoreClass;
   readMoreMessage;
-  currentData
+  blogLikes;
   blog = {
     title: String,
     body: String,
@@ -38,6 +38,8 @@ export class ReadMoreComponent implements OnInit {
 
     this.blogService.getSingleBlog(this.currentUrl.id).subscribe(data => {
       this.blog = data.blog;
+      this.blogLikes = data.blog.likedBy;
+      console.log(this.blogLikes);
     })
   }
 

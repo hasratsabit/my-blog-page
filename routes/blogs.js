@@ -216,5 +216,67 @@ router.put('/updateBlog', (req, res) => {
 		}
 	})
 
+// ==========================================================
+//										LIKE BLOG
+// ==========================================================
+	router.put('/likeBlog', (req, res) => {
+		// Check if the id is passed.
+		if(!req.body.id) {
+			// Respond if no id is given.
+			res.json({ success: false, message: 'Cannot find the blog id'});
+		}else {
+			// Find the id for the blog.
+			Blog.findOne({ _id: req.body.id }, (err, blog) => {
+				// Check if there is error finding the blog by id.
+				if(err){
+					// Respond if there is error.
+					res.json({ success: false, message: 'Error occured finding the blog id.', err});
+					// Check if the blog is not found.
+				}else if (!blog) {
+					// Respond if the blog is not found.
+					res.json({ success: false, message: 'Cannot find blog with the given id.'});
+				}else {
+					// Decrypt the user object and find the unique userid.
+					User.findOne({ _id: req.decoded.userId }, (err, user) => {
+						// Check for error.
+						if(err){
+							// Respond if there is error.
+							res.json({ success: false, message: 'Error occured finding the user id.', err});
+							// Check if the user is not found.
+						}else if (!user) {
+							// Respond if the user is not found.
+							res.json({ success: false, message: 'You have to login to like this post.'});
+							// Check if the user previously liked the blog.
+						}else if (user.username === blog.username) {
+							// Respond if the user previously liked the blog.
+							res.json({ success: false, message: 'You cannot like your own blog.'});
+							// Check if the username already liked this blog.
+						}else if(blog.likedBy.includes(user.username)){
+							// Respond the user already liked this blog. 
+							res.json({ success: false, message: 'You already liked this blog.'})
+						}else{
+							// Increment the likes by one for each click.
+							blog.likes++;
+							// Push the username to the array.
+							blog.likedBy.push(user.username);
+							// Save the blog.
+							blog.save((err) => {
+								// Check for the error.
+								if(err){
+									// Respond if there is any error.
+									res.json({ success: false, message: 'Error occured saving blog.'})
+								}else {
+									// Respond with success if like is successfully made.
+									res.json({ success: true, message: 'Blog liked.'})
+								}
+							})
+						}
+					})
+				}
+			})
+		}
+	})
+
+
 return router;
 }
