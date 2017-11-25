@@ -1,30 +1,71 @@
 <div class="row">
   <div class="col s12 m6 l4" *ngFor="let blog of newBlogPost">
+    <!-- Blog Box Container -->
     <div class="blog" >
+
+      <!-- Top Dropdown Menue -->
+      <div class="blog__menu">
+        <button class="button button-default" mat-icon-button [matMenuTriggerFor]="menu">
+          <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button [routerLink]="['/delete-blog', blog._id]" mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+          <button [routerLink]="['/edit-blog', blog._id]" mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>save</mat-icon>
+            <span>Save</span>
+          </button>
+        </mat-menu>
+      </div><!-- Top Dropdown Menue Ends -->
+
+
+      <!-- User Info -->
+      <div class="user blog-user">
+        <h1 class="user__name"><a [routerLink]="['/profile']">Hasrat Sabit</a></h1>
+        <span class="user__date">{{ blog.date | date: 'MMMM dd, yyyy'}}</span>
+        <a [routerLink]="['/profile']"><img class="user__img" src="/assets/images/profile.jpg" alt=""></a>
+      </div>
+
+
+      <!-- Blog Image -->
       <div class="blog__img">
         <img src="/assets/images/corn.jpg" alt="">
       </div>
+
+
+      <!-- Blog Content-->
       <div class="blog__content">
-        <div class="blog__bio">
-          <a href="#"> {{ blog.createdBy }}</a>
-          <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ blog.date | date:'MMMM dd, yyyy' }}</span>
-        </div>
+
+
+        <!-- Blog Title-->
         <div class="blog__title">
           <h1><a [routerLink]="['/read-more', blog._id]">{{ blog.title}}</a></h1>
         </div>
+
+
+        <!-- Blog Body-->
         <div class="blog__text">
-            <p>{{ blog.body | slice:0:80 }}....</p>
+            <p>{{ blog.body | slice:0:100 }}....</p>
         </div>
 
-        <div class="blog__media hover">
-          <button type="button" name="button" class="button" (click)="likeBlog(blog._id)"><i class="fa fa-heart" aria-hidden="true"></i></button><span>{{ blog.likes }}</span>
-          <a href="#"><i class="fa fa-comment" aria-hidden="true"></i></a><span>{{ blog.commentNum }}</span>
-          <a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a><span>0</span>
-          <a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-          <a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a>
-          <a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+
+
+        <!-- Blog Footer -->
+        <div class="post-footer blog__footer">
+          <button class="button button-default"><i class="fa fa-heart post-footer__icon " aria-hidden="true"></i></button><span class="post-footer__data">{{ blog.likes }}</span>
+          <i class="fa fa-comment post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">{{ blog.commentNum }}</span>
+          <i class="fa fa-share-alt post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">22</span>
+          <a [routerLink]="['/read-more', blog._id]" class="read-more">Read More <i class="fa fa-arrow-circle-o-right " aria-hidden="true"></i></a>
         </div>
-      </div>
-    </div>
+
+
+      </div><!-- Blog Content Ends-->
+    </div><!-- Blog Box Container Ends-->
   </div>
 </div>

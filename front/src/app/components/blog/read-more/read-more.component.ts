@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { BlogService } from '../../../services/blog.service';
+import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
@@ -14,22 +15,37 @@ export class ReadMoreComponent implements OnInit {
   readMoreClass;
   readMoreMessage;
   blogLikes;
-  blog = {
-    title: String,
-    body: String,
-    author: String,
-    date: Date,
-    likes: Number,
-    commentNum: Number
-  }
+  username;
+  blog = {}
+  newComment = false;
 
   constructor(
     private blogService: BlogService,
     private location: Location,
     private router: Router,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute
 
   ) { }
+
+
+  likeBlog(id) {
+    this.blogService.likeBlog(id).subscribe(data => {
+      this.ngOnInit();
+    })
+  }
+
+  postComment() {
+    this.newComment = true;
+  }
+
+  cancelComment() {
+    this.newComment = false;
+  }
+
+  goBack() {
+    this.location.back();
+  }
 
   ngOnInit() {
 
@@ -38,8 +54,10 @@ export class ReadMoreComponent implements OnInit {
 
     this.blogService.getSingleBlog(this.currentUrl.id).subscribe(data => {
       this.blog = data.blog;
-      this.blogLikes = data.blog.likedBy;
-      console.log(this.blogLikes);
+    })
+
+    this.authService.getProfile().subscribe(data => {
+      this.username = data.user.username;
     })
   }
 

@@ -1,1 +1,93 @@
+<div class="row box post">
 
+  <!-- Top Right Corner Buttons -->
+  <div class="post__top-nav">
+    <button type="button" name="button" class="button button-large button-clear-green" (click)="goBack()">Go Back</button>
+    <button *ngIf="username === blog.username" type="button" name="button" class="button button-large button-clear-yellow edit-button "><a [routerLink]="['/edit-blog', blog._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
+    <button *ngIf="username === blog.username"  type="button" name="button" class="button button-large button-clear-red delete-button"><a [routerLink]="['/delete-blog', blog._id]"><i class="fa fa-trash" aria-hidden="true"></i></a></button>
+  </div>
+
+
+  <!-- Title, Author, Subheading, Image -->
+  <div class="post__left-content">
+    <!-- Title -->
+    <div class="post__title">
+      <h1>{{ blog.title }}</h1>
+    </div>
+    <!-- Author, Author img, date-->
+    <div class="user post__author">
+      <h1 class="user__name"><a [routerLink]="['/profile']">{{ blog.createdBy }}</a></h1>
+      <span class="user__date">{{ blog.date | date: 'MMMM dd, yyyy'}}</span>
+      <a [routerLink]="['/profile']"><img class="user__img" src="/assets/images/profile.jpg" alt=""></a>
+    </div>
+    <!-- Subheading -->
+    <div class="post__subheading">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <!-- Hero Image -->
+    <div class="post__img">
+      <img src="/assets/images/corn.jpg" alt="">
+    </div>
+
+  </div><!-- Title, Author, Subheading, Image Ends-->
+
+  <!-- Right Content: Like, comment, share-->
+  <div class="post__right-content">
+    <button (click)="likeBlog(blog._id)" type="button" name="button" class="button button-large button-default-blue"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Like</button><span>{{ blog.likes }}</span><br>
+    <button type="button" name="button" class="button button-large button-default-blue"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp; Comments </button><span>{{ blog.commentNum }}</span><br>
+    <button type="button" name="button" class="button button-large button-default-blue"><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; Share</button><span>343</span><br>
+    <button type="button" name="button" class="button button-large button-default-blue"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp; Views</button><span>343</span><br>
+  </div>
+  <!-- Body Paragraph -->
+  <div class="paragraph post__paragraph">
+    <p class="paragraph__data">{{ blog.body }}</p>
+  </div>
+
+  <span class="divider"></span>
+
+
+<!-- Comment and Buttons -->
+  <div class="post__bottom-content">
+    <!-- Button Buttons -->
+    <button type="button" name="button" class="button button-large button-clear-blue"><i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Like</button>
+    <button (click)="postComment()" type="button" name="button" class="button button-large button-clear-blue"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp; Leave Comment</button>
+    <button type="button" name="button" class="button button-large button-clear-blue"><i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; Share</button>
+
+    <!-- Comment Section -->
+    <div class="comment">
+
+      <!-- Comment Box -->
+      <div *ngIf="newComment" class="col s12 m6 comment__post-comment">
+        <form>
+        <textarea name="name" rows="8" cols="80" placeholder="Leave a comment here ..."></textarea>
+        <button type="button" name="button" class="button button-small button-clear-green">Submit</button>
+        <button (click)="cancelComment()" type="button" name="button" class="button button-small button-clear-yellow">Cancel</button>
+        </form>
+      </div>
+
+      <!-- User's Comment -->
+      <div class="comment post__comment">
+
+        <!-- User's Info -->
+        <div class="user comment__user">
+          <h1 class="user__name comment__user-name"><a [routerLink]="['/profile']">Hasrat Sabit</a></h1>
+          <a [routerLink]="['/profile']"><img class="user__img comment__user-img" src="/assets/images/profile.jpg" alt=""></a>
+        </div>
+
+        <!-- Content -->
+        <div class=" comment__post">
+           <p class=" comment__post-data">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <!-- Footer-->
+        <div class="post-footer comment__footer">
+          <button class="button button-default"><i class="fa fa-thumbs-up post-footer__icon " aria-hidden="true"></i></button><span class="post-footer__data">33</span>
+          <i class="fa fa-reply post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">23</span>
+          <i class="fa fa-clock-o post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">November 9, 2016</span>
+        </div>
+
+      </div><!-- User's Comment Ends -->
+
+    </div>
+  </div>
+</div>

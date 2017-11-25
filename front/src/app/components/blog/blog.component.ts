@@ -46,14 +46,14 @@ export class BlogComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: ['', Validators.compose([
         Validators.required, // Title is required.
-        Validators.maxLength(100), // The max length for title is 100.
+        Validators.maxLength(200), // The max length for title is 100.
         Validators.minLength(5), // The min length for title is 5.
         this.validTitle // Use the validTitle method bellow to check for valid title.
       ])],
 
       body: ['', Validators.compose([
         Validators.required, // Body is required.
-        Validators.maxLength(1500), // The max length for body is 1500.
+        Validators.maxLength(2000), // The max length for body is 1500.
         Validators.minLength(5) // The min length for body is 5.
       ])]
     })
@@ -132,6 +132,7 @@ export class BlogComponent implements OnInit {
         setTimeout(() => {
           this.postBlogClass = null; // Remove the class.
           this.postBlogMessage = null; // Remove the message.
+          this.newPost = false; // Close the post form.
         }, 5000)
       }
     })

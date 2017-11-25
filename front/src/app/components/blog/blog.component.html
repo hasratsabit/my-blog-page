@@ -1,7 +1,7 @@
 
 <div class="row box" *ngIf="newPost">
   <div [ngClass]="postBlogClass">
-    <p *ngIf="postBlogMessage">{{ postBlogMessage }} &nbsp;<a [routerLink]="['/read-more', this.newBlogLink._id]">Click here to view the blog.</a></p>
+    <p *ngIf="postBlogMessage">{{ postBlogMessage }} &nbsp;<a [routerLink]="['/read-more', newBlogLink._id]">Click here to view the blog.</a></p>
   </div>
 
   <form [formGroup]="form" (submit)="onNewBlogPost() " class="col s12">
@@ -15,7 +15,7 @@
           <ul>
             <li *ngIf="form.controls.title.errors?.required && form.controls.title.dirty"> The title field is required. </li>
             <li *ngIf="form.controls.title.errors?.validTitle && form.controls.title.dirty"> The title must not contain special characters </li>
-            <li *ngIf="(form.controls.title.errors?.minlength && form.controls.title.dirty) || (form.controls.title.errors?.maxlength && form.controls.title.dirty)"> The title should be at least 5 characters but no more than 100</li>
+            <li *ngIf="(form.controls.title.errors?.minlength && form.controls.title.dirty) || (form.controls.title.errors?.maxlength && form.controls.title.dirty)"> The title should be at least 5 characters but no more than 200</li>
           </ul>
         </div>
       </div>
@@ -41,7 +41,7 @@
       </div>
 
 
-      <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-clear-blue">Post Blog</button>
+      <button [disabled]="!form.valid || processing" type="submit" name="button" class="button button-large button-clear-green">Post Blog</button>
 
       <button [disabled]="proccessing" type="button" (click)="cancelPostForm()" name="button" class="button button-large button-clear-yellow">Cancel</button>
 
@@ -50,7 +50,7 @@
 </div>
 
 <div class="box">
-      <button *ngIf="!newPost" type="button" class="button button-clear-blue button-large" (click)="loadBlogForm()" name="button">New Post</button>
+      <button *ngIf="!newPost" type="button" class="button button-clear-green button-large" (click)="loadBlogForm()" name="button">New Post</button>
       <div class="input-field col s12">
         <input type="text" class="input-control" name="search" autocomplete="off">
         <label for="title">Search For Blogs</label>

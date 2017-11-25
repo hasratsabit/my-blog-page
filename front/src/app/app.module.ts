@@ -11,7 +11,9 @@ import {
   MatSelectModule,
   MatCheckboxModule,
   MatFormFieldModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule,
+  MatIconModule
 
   } from '@angular/material';
 
@@ -31,6 +33,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
 import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
 import { ReadMoreComponent } from './components/blog/read-more/read-more.component';
+import { TestComponent } from './components/test/test.component';
 
 
 
@@ -46,7 +49,8 @@ import { ReadMoreComponent } from './components/blog/read-more/read-more.compone
     BlogComponent,
     EditBlogComponent,
     DeleteBlogComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { ReadMoreComponent } from './components/blog/read-more/read-more.compone
     MatCheckboxModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [AuthService, AuthGuard, NotAuthGuard, BlogService],
   bootstrap: [AppComponent]
