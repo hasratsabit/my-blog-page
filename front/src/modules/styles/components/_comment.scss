@@ -1,0 +1,54 @@
+.comment {
+
+	.comment {
+		// Div wraps the paragraph.
+		&__post {
+			margin: -22px 0 10px 44px;
+		}
+
+		// Comment Paragraph
+		&__post-data {
+			font-size: 0.9rem;
+			color: $genericColor;
+			@include atMedium {
+				font-size: 1.1rem;
+			}
+		}
+
+		// The footer.
+		&__footer {
+			margin-left: 35px;
+		}
+	}
+
+
+
+/* Comment textarea and button */
+	&__post-comment {
+		margin: 10px 0;
+		/* Comment textarea and button */
+		textarea {
+			min-width: 100%;
+			background: whitesmoke;
+			height: 150px;
+			padding: 5px;
+			border: 0 !important;
+			margin-bottom: 10px;
+			transition: all 300ms linear;
+			&:focus {
+				background: transparent;
+				border: 1px solid $lightBlue !important;
+				transition: all 300ms linear;
+				outline: none;
+			}
+		}
+
+		button {
+			float: right;
+			margin-left: 10px;
+		}
+	}
+
+
+
+}

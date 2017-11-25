@@ -1,0 +1,14 @@
+.paragraph {
+
+	&__data {
+		font-size: 1.3rem;
+		line-height: 25px;
+		color: $genericColor;
+		margin: 20px 0;
+		font-family: $source;
+		@include atMedium {
+			line-height: 35px;
+			font-size: 1.4rem;
+		}
+	}
+}

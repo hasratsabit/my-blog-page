@@ -1,3 +1,30 @@
-// ==========================================================
-//
-// ==========================================================
+  COMMENTS
+
+<div class="comment">
+
+  <div class="user comment__user">
+    <h1 class="user__name comment__user-name"><a [routerLink]="['/profile']">Hasrat Sabit</a></h1>
+    <a [routerLink]="['/profile']"><img class="user__img comment__user-img" src="/assets/images/profile.jpg" alt=""></a>
+  </div>
+
+  <div class=" comment__post">
+     <p class=" comment__post-data">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+
+  <div class="post-footer comment__footer">
+    <button class="button button-default"><i class="fa fa-thumbs-up post-footer__icon " aria-hidden="true"></i></button><span class="post-footer__data">33</span>
+    <i class="fa fa-reply post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">23</span>
+    <i class="fa fa-clock-o post-footer__icon" aria-hidden="true"></i><span class="post-footer__data">November 9, 2016</span>
+  </div>
+
+</div>
+
+
+
+ USER
+
+ <div class="user blog-user">
+   <h1 class="user__name"><a [routerLink]="['/profile']">Hasrat Sabit</a></h1>
+   <span class="user__date">November 04, 2017</span>
+   <a [routerLink]="['/profile']"><img class="user__img" src="/assets/images/profile.jpg" alt=""></a>
+ </div>

@@ -1,0 +1,37 @@
+.user {
+	position: relative;
+
+	&__name {
+		position: absolute;
+		left: 45px;
+		top: 5px;
+		margin: 0;
+		padding: 0;
+		text-transform: capitalize;
+		font-weight: 900;
+		font-size: 0.9rem;
+
+		a {
+			color: $darkGray;
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__date {
+		position: absolute;
+		top: 20px;
+		left: 45px;
+		font-size: 0.7rem;
+		color: $genericColor;
+	}
+
+	&__img {
+		border-radius: 50%;
+		border: 2px solid $lightBlue;
+		height: 40px;
+		width: 40px;
+	}
+}

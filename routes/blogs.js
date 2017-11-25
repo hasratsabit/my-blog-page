@@ -252,7 +252,7 @@ router.put('/updateBlog', (req, res) => {
 							res.json({ success: false, message: 'You cannot like your own blog.'});
 							// Check if the username already liked this blog.
 						}else if(blog.likedBy.includes(user.username)){
-							// Respond the user already liked this blog. 
+							// Respond the user already liked this blog.
 							res.json({ success: false, message: 'You already liked this blog.'})
 						}else{
 							// Increment the likes by one for each click.
@@ -275,8 +275,56 @@ router.put('/updateBlog', (req, res) => {
 				}
 			})
 		}
-	})
+	});
 
+
+// ==========================================================
+//										POST COMMENTS
+// ==========================================================
+	router.post('/postComment', (req, res) => {
+		if(!req.body.comment) {
+			res.json({ success: false , message: 'The comment field is empty.'});
+		}else if(!req.body.id){
+			res.json({ success: false, message: 'No comment id was provided.'});
+		}else {
+			blog.findOne({ _id: req.body.id }, (err, blog) => {
+				if(err){
+					res.json({ success: false, message: 'Error occured finding blog.', err});
+				}else if (!blog) {
+					res.json({ success: false, message: 'No blog was found.'});
+				}else {
+					User.findOne({ _id: req.encoded.userId }, (err, user) => {
+						if(err){
+							res.json({ success: false, message: 'Error occurred finding user.', err});
+						}else if (!user) {
+							res.json({ success: false, message: 'User was not found.'});
+						}else {
+							blog.commentCounter++;
+							blog.comments.push({
+								comment: req.body.comment,
+								comentator: user.username,
+							});
+							blog.save((err) => {
+								if(err){
+									if(err.errors){
+										if(err.errors.comments){
+											res.json({ success: false, message: err.errors.comments.message})
+										}else {
+											res.json({ success: false, message: 'Error occured.', err});
+										}
+									}else {
+										res.json({ success: false, message: err});
+									}
+								}else {
+									res.json({ success: true, message: 'Comment successfully posted.'});
+								}
+							})
+						}
+					})
+				}
+			})
+		}
+	})
 
 return router;
 }

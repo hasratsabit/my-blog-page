@@ -24,3 +24,7 @@ img {
 	box-sizing: border-box;
 	height: auto;
 }
+
+button:focus {
+	outline: none;
+}

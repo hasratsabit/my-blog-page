@@ -1,0 +1,104 @@
+.post {
+	position: relative;
+	padding: 20px;
+	font-family: $source;
+	@include clearfix;
+	@include atMedium {
+		padding: 50px;
+	}
+
+	&__top-nav {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+
+	/* Right Side Buttons */
+	&__right-content {
+		position: relative;
+		margin-top: 170px;
+		padding: 50px 20px;
+		height: 420px;
+		border-radius: 5px;
+		background: whitesmoke;
+		display: none;
+		button {
+			margin: 15px 0;
+			display: inline-block;
+		}
+
+		span {
+			float: right;
+			margin-top: 25px;
+			color: $lightGray;
+			font-weight: 900;
+		}
+
+		@include atMedium {
+			display: block;
+			width: 40%;
+			float: right;
+		}
+	}
+/* Left Side Image */
+	&__left-content {
+
+		// Only on larger device
+		@include atMedium {
+			width: 60%;
+			float: left;
+		}
+	}
+	/* Post Title */
+	&__title {
+
+		h1 {
+			margin: 40px 0 0 0;
+			padding: 0;
+			font-size: 2.5rem;
+			font-weight: 900;
+			text-transform: capitalize;
+			color: $darkGray;
+			@include atMedium {
+				margin: 0;
+				font-size: 3.4rem;
+			}
+		}
+	}
+
+	/* Post Author */
+	&__author {
+		margin-top: 20px;
+	}
+
+	/* Post Subheading */
+	&__subheading {
+		font-size: 1.2rem;
+		font-weight: 900;
+		font-style: italic;
+		color: $lightGray;
+		padding: 10px 0;
+		text-indent: 5px;
+	}
+
+	/* Post Image */
+	&__img {
+		padding: 10px 0;
+		img {
+			max-width: 100%;
+			border-radius: 5px;
+		}
+	}
+
+
+	// User Comment
+	&__comment {
+		float: left;
+		margin: 20px 0;
+	}
+
+	// Post Paragraph
+	&__paragraph {
+		float: left;
+	}
+}

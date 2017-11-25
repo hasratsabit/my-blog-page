@@ -1,5 +1,48 @@
 .nav {
+	&__top-nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 20;
+		height: 60px;
+		width: 100%;
+		background: white;
+		box-shadow: $shadow;
+		transition: all 200ms linear;
+		@include atSmall {
+			width: 80%;
+		}
+		@include atLarge {
+			width: 85%;
+		}
 
+		// JS class to change the width to 100%;
+		&--is-expanded {
+			width: 100%;
+			transition: all 200ms linear;
+		}
+	}
+
+	&__right-navbar {
+		position: absolute;
+		right: 0;
+		text-align: center;
+
+		li {
+			display: inline-block;
+		}
+
+		a {
+			display: inline-block;
+			padding: 19px;
+			color: $darkGreen;
+			transition: all 300ms linear;
+			&:hover,
+			&:focus {
+				color: $lightGreen;
+			}
+		}
+	}
 	&__user-box {
 	position: fixed;
 	top: 60px;
@@ -50,52 +93,7 @@
 		}
 	}
 
-	&__top-nav {
-		position: fixed;
-		top: 0;
-		right: 0;
-		z-index: 20;
-		height: 60px;
-		width: 100%;
-		background: $lightBlue;
-		box-shadow: $shadow;
-		transition: all 200ms linear;
-		@include atSmall {
-			width: 80%;
-		}
-		@include atLarge {
-			width: 85%;
-		}
 
-		// JS class to change the width to 100%;
-		&--is-expanded {
-			width: 100%;
-			transition: all 200ms linear;
-		}
-	}
-
-	&__right-navbar {
-		position: absolute;
-		right: 0;
-		text-align: center;
-
-		li {
-			display: inline-block;
-		}
-
-		a {
-			display: inline-block;
-			padding: 19px;
-			color: #FFF;
-			opacity: 0.8;
-			transition: all 300ms linear;
-			&:hover,
-			&:focus {
-				opacity: 1;
-				background: $darkBlue;
-			}
-		}
-	}
 
 
 	&__side-nav {

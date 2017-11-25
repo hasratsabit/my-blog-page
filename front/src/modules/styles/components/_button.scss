@@ -2,7 +2,6 @@
 	position: relative;
 	border: 0;
 	border-radius: 3px;
-	margin: 0 10px;
 }
 
 
@@ -13,9 +12,25 @@
 }
 
 .button-large {
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 900;
-	padding: 10px 20px;
+	padding: 8px 15px;
+	@include atMedium {
+		font-size: 1.2rem;
+		padding: 10px 20px;
+	}
+	i {
+		font-size: 1.5rem;
+		@include atMedium {
+			font-size: 1.7rem;
+		}
+	}
+}
+
+.button-small {
+	font-size: 1rem;
+	font-weight: 900;
+	padding: 8px 15px;
 }
 
 .button-blue {
@@ -37,6 +52,16 @@
 	}
 }
 
+.button-green {
+	background: $darkGreen;
+	color: #FFF;
+	transition: all 300ms ease-in-out;
+	&:hover {
+		background: $lightGreen;
+	}
+}
+
+
 .button-yellow {
 	background-color: $darkYellow;
 	color: #FFF;
@@ -45,6 +70,54 @@
 		background: $lightYellow;
 	}
 }
+
+.button-default-blue {
+	background: transparent;
+	color: $lightGray;
+	transition: all 300ms ease-in-out;
+	&:hover,
+	&:focus,
+	&:active {
+		background: transparent;
+		border: none;
+		color: $lightBlue;
+		transition: all 300ms ease-in-out;
+	}
+}
+
+
+.button-default {
+	color: none;
+	background: transparent;
+	border: none;
+	&:hover,
+	&:focus,
+	&:active {
+		background: transparent;
+		border: none;
+	}
+}
+
+.delete-button {
+	border: none !important;
+	a {
+		color: $lightRed;
+	}
+	&:hover a {
+		color: #FFF;
+	}
+}
+
+.edit-button {
+	border: none !important;
+	a {
+		color: $lightYellow;
+	}
+	&:hover a {
+		color: #FFF;
+	}
+}
+
 
 .button-clear-blue {
 	border: 1px solid $lightBlue;
@@ -55,6 +128,17 @@
 		color: #FFF;
 	}
 }
+
+.button-clear-green {
+	border: 1px solid $lightGreen;
+	color: $lightGreen;
+	transition: all 300ms ease-in-out;
+	&:hover {
+		background: $lightGreen;
+		color: #FFF;
+	}
+}
+
 
 .button-clear-red {
 	border: 1px solid $lightRed;

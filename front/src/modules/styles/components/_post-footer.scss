@@ -1,0 +1,16 @@
+.post-footer{
+
+	&__icon,
+	&__data {
+		color: $lightGray;
+	}
+
+	&__icon {
+		margin-left: 10px;
+	}
+
+	&__data {
+		font-size: 0.8rem;
+		margin-left: 5px;
+	}
+}

@@ -1,13 +1,13 @@
 .box {
 	height: auto;
-	padding: 50px;
+	padding: 50px 20px;
 	background: #FFF;
 	box-shadow: $shadow;
 }
 
 .box-header {
 	text-align: center;
-	font-family: $box-headers;
+	font-family: $source;
 	text-transform: uppercase;
 	font-weight: 800;
 	color: $lightBlue;

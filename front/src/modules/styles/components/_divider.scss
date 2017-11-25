@@ -1,8 +1,12 @@
 .divider {
 	position: relative;
 	display: block;
-	height: 1px;
 	width: 100%;
-	background-color: #ccc;
-	margin: 20px 0;
+	background-color: $lightGray;
+	margin: 10px 0;
+	height: 1px;
+	@include atMedium {
+		height: 5px;
+		margin: 10px 0;
+	}
 }
